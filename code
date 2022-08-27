@@ -1,0 +1,30 @@
+    private List<Person> personnes = List.of(
+            new Person(1,"ali",23),
+            new Person(2,"youssef",10),
+            new Person(3,"jalal",70),
+            new Person(4,"abdeladim",40),
+            new Person(5,"kaall",55),
+            new Person(6,"jonson",39),
+            new Person(7,"pontine",21),
+            new Person(8,"ralong",15)
+             );
+
+    @Test
+    public void contextLoads() {
+       /* List<Person> personnesStram = personnes.stream().filter( p -> p.getAge() < 20).collect(Collectors.toList());*/
+        List<NewPerson> personnesStram = personnes.stream().
+                map(this::convertToNewPerson)
+                .collect(Collectors.toList());
+
+        for (NewPerson person : personnesStram){
+            System.out.println(person.newData());
+        }
+    }
+
+    public NewPerson convertToNewPerson(Person person){
+        NewPerson newPerson = new NewPerson();
+
+        newPerson.setId(person.getId());
+        newPerson.setName(person.getName());
+        return  newPerson;
+    }
